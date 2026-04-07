@@ -51,6 +51,6 @@ class TranscriptAuditor:
             response_format={ "type": "json_object" }
         )
 
-        text = response.output_text.strip()
+        text = response.choices[0].message.content.strip()
         data = json.loads(text)
         return AuditResult(chat_id=transcript.chat_id, **data)
