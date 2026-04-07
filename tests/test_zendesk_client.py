@@ -1,5 +1,7 @@
+
 from app.services.zendesk_client import _build_base_url
 from app.services.zendesk_client import _normalize_path
+ main
 from app.services.zendesk_client import _parse_dt
 from app.services.zendesk_client import ZendeskClient
 from app.services.settings import Settings
@@ -14,6 +16,7 @@ def _settings() -> Settings:
     )
 
 
+
 def test_build_base_url_from_subdomain() -> None:
     assert _build_base_url("acme") == "https://acme.zendesk.com"
 
@@ -22,6 +25,7 @@ def test_build_base_url_from_host() -> None:
     assert _build_base_url("www.zopim.com") == "https://www.zopim.com"
 
 
+ main
 def test_parse_dt_invalid_returns_none() -> None:
     assert _parse_dt("not-a-date") is None
 
@@ -32,10 +36,12 @@ def test_parse_dt_unix_timestamp() -> None:
     assert parsed.tzinfo is not None
 
 
+
 def test_normalize_path_strips_spaces() -> None:
     assert _normalize_path("  /api/v2/chats.json  ") == "/api/v2/chats.json"
 
 
+main
 def test_normalize_chat_ignores_blank_messages() -> None:
     client = ZendeskClient(_settings())
     normalized = client._normalize_chat(

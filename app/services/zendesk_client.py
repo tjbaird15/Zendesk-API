@@ -17,7 +17,9 @@ class ZendeskClient:
 
     def __init__(self, settings: Settings) -> None:
         self._settings = settings
+
         self._base_url = _build_base_url(settings.zendesk_subdomain)
+main
         self._auth = (
             f"{settings.zendesk_email}/token",
             settings.zendesk_api_token.get_secret_value(),
@@ -43,8 +45,9 @@ class ZendeskClient:
 
     async def _fetch_chat_summaries(self, start_time: int) -> list[dict[str, Any]]:
         params = {"start_time": start_time, "page[size]": 200}
+
         list_path = _normalize_path(self._settings.zendesk_chat_list_path)
-        url: str | None = f"{self._base_url}{list_path}"
+        url: str | None = f"{self._base_url}{list_path}" main
         output: list[dict[str, Any]] = []
 
         async with httpx.AsyncClient(timeout=30) as client:
@@ -74,7 +77,9 @@ class ZendeskClient:
         if not chat_id:
             return raw_chat
 
+
         detail_url = f"{self._base_url}/api/v2/chats/{chat_id}.json"
+ main
         response = await client.get(detail_url, auth=self._auth)
         if response.status_code >= 400:
             return raw_chat
@@ -147,3 +152,4 @@ def _normalize_path(value: str) -> str:
     if not path.startswith("/"):
         path = f"/{path}"
     return path
+ main

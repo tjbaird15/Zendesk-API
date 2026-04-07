@@ -22,9 +22,11 @@ ZENDESK_SUBDOMAIN=your-subdomain
 ZENDESK_EMAIL=agent@company.com
 ZENDESK_API_TOKEN=your_zendesk_api_token
 OPENAI_API_KEY=your_openai_api_key
+
 OPENAI_MODEL=gpt-4o-mini
 # Optional override if needed, defaults to /api/v2/chats.json
 # ZENDESK_CHAT_LIST_PATH=/api/v2/chats.json
+
 ```
 
 ## Run locally
@@ -35,6 +37,7 @@ source .venv/bin/activate
 pip install -e .
 uvicorn app.main:app --reload
 ```
+
 
 `ZENDESK_SUBDOMAIN` can be either:
 - a bare Zendesk subdomain (example: `mycompany`)
