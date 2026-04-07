@@ -14,8 +14,10 @@ class Settings(BaseSettings):
     zendesk_email: str = Field(..., description="Zendesk account email")
     zendesk_api_token: SecretStr = Field(..., description="Zendesk API token")
     openai_api_key: SecretStr = Field(..., description="OpenAI API key")
-    openai_model: str = Field(default="gpt-4.1-mini")
-    zendesk_chat_list_path: str = Field(default="/api/v2/chats")
+
+    openai_model: str = Field(default="gpt-4o-mini")
+    zendesk_chat_list_path: str = Field(default="/api/v2/chats.json")
+ main
 
 
 class HealthInfo(BaseModel):
