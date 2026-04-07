@@ -41,10 +41,14 @@ class TranscriptAuditor:
             f"Transcript:\n{transcript_text}"
         )
 
-        response = await self._client.responses.create(
+        response = await self._client.chat.completions.create(
             model=self._model,
-            input=prompt,
+            messages=[
+                {"role": "system", "content": "You are a strict eCommerce support QA reviewer."},
+                {"role": "user", "content": prompt}
+            ],
             temperature=0,
+            response_format={ "type": "json_object" }
         )
 
         text = response.output_text.strip()
